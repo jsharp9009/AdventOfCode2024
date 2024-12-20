@@ -7,8 +7,6 @@ namespace RaceCondition;
 // Too Low 1326
 class Program
 {
-    static readonly Point[] cheatDirections = { new Point(0, 2), new Point(2, 0), new Point(0, -2), new Point(-2, 0) };
-
     static void Main(string[] args)
     {
         var input = File.ReadAllLines("input.txt").Select(s => s.ToCharArray()).ToArray();
@@ -42,7 +40,7 @@ class Program
     }
 
     static List<Point> Walk(Point start, char[][] map){
-        List<Point> path = new List<Point>(){start};
+        List<Point> path = [start];
         var curr = start;
         while(true){
             foreach(var dir in Point.CardinalDirections){
@@ -62,8 +60,6 @@ class Program
     }
 }
 
-public record State(Point Position, Point direction);
-
 public record Point(int row, int column)
 {
     public static Point operator +(Point p1, Point p2)
@@ -76,5 +72,5 @@ public record Point(int row, int column)
         return new Point(p1.row - p2.row, p1.column - p2.column);
     }
 
-    public static readonly Point[] CardinalDirections = { new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0) };
+    public static readonly Point[] CardinalDirections = [new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0)];
 }
